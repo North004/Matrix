@@ -79,6 +79,10 @@ impl<T: Numeric> Matrix<T> {
         }
         result
     }
+
+    fn inverse(&self) -> Matrix<T> {
+        todo!()
+    }
 }
 
 impl<T: Numeric> Index<usize> for Matrix<T> {
@@ -90,7 +94,13 @@ impl<T: Numeric> Index<usize> for Matrix<T> {
         &self.data[start..end]
     }
 }
-
+//art
+//  -------------------------------------------------------
+//  |  11101101 00110101 01111010 10110011   |   01101010 |
+//  |  11001010 10100111 10101110 11110101   |   01010101 |
+//  |  01010101 11010010 10101010 10101011   |   01010100 |
+//  |  11010101 11111110 01101010 00000111   |   01010011 |
+//  -------------------------------------------------------
 impl<T: Numeric> IndexMut<usize> for Matrix<T> {
     fn index_mut(&mut self, index: usize) -> &mut Self::Output {
         let start = index * self.cols;
@@ -135,6 +145,7 @@ impl<T: fmt::Debug + Numeric> fmt::Debug for Matrix<T> {
         Ok(())
     }
 }
+
 macro_rules! matrix {
     ($($row:expr),*) => {{
         let rows = vec![$(Vec::from($row)),*];
